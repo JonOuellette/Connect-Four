@@ -17,7 +17,10 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 
 function makeBoard() {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
-  board = Array(6).fill(0).map( () => Array(7));
+  // board = Array(6).fill(0).map( () => Array(7));
+  for (let y = 0; y < HEIGHT; y++) {
+    board.push(Array.from({ length: WIDTH }));
+  }
 }
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
@@ -52,22 +55,23 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
-     for(let y = (HEIGHT - 1); y >= 0; y--){
-      if (!board[y][x]){
-        return y; 
-      }
-     }
-     return null;
+  for(let y = (HEIGHT - 1); y >= 0; y--){
+    if(!board[y][x]) {
+      return y
+    } 
+  }
+  return null
+
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
-  const piece = document.createElement("div");
-  piece.classList.add("piece");
+  const piece = document.createElement('div');
+  piece.classList.add('piece');
   piece.classList.add(`p${currPlayer}`);
+ 
   const cord = document.getElementById(`${y}-${x}`);
   cord.append(piece);
 }
