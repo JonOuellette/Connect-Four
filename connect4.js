@@ -42,7 +42,7 @@ function makeHtmlBoard() {
     const row = document.createElement("tr");   //createa table row element through each iteration of the loop and setting the value to row
     for (var x = 0; x < WIDTH; x++) {           // creates a nested loop that iterates up to the value of height
       const cell = document.createElement("td");     // creates table data element through each iteration and setting value to cell
-      cell.setAttribute("id", `${y}-${x}`);         // sets an id attribute to template literal of the value y - x 
+      cell.setAttribute("id", `${y}-${x}`);         // sets an id attribute to the value of y-x
       row.append(cell);                             // appends the cell element
     }
     htmlBoard.append(row);                           //appends the row element
@@ -53,13 +53,18 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  return 0;
+  return board.filter((row) => row[x] === null).length -1
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
   // TODO: make a div and insert into correct table cell
+  const spot = document.quertySelector('#${y}-${x}')
+  const piece = document.createElement('div')
+  piece.classList.add("piece");
+  piece.classList.add('Player${currPlayer}')
+  spot.append(piece);
 }
 
 /** endGame: announce game end */
